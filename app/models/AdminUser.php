@@ -46,19 +46,24 @@ class AdminUser
 
             $password = hash_hmac('sha512', $data['password'], ENCRIPTKEY);
 
-            $sql = 'INSERT INTO users(name, email, password, status, deleted, login_at, created_at, updated_at, deleted_at) 
-                VALUES (:name, :email, :password, :status, :deleted, :login_at, :created_at, :updated_at, :deleted_at)';
+            $sql = 'INSERT INTO users(first_name, last_name_1, last_name_2, email, 
+                  address, city, state, zipcode, country, password) 
+                  VALUES(:first_name, :last_name_1, :last_name_2, :email, 
+                  :address, :city, :state, :zipcode, :country, :password)';
+
             $params = [
-                ':name' => $data['name'],
+                ':first_name' => $data['name'],
+                ':last_name_1' => '',
+                ':last_name_2' => '',
                 ':email' => $data['email'],
+                ':address' => '',
+                ':city' => '',
+                ':state' => '',
+                ':zipcode' => '',
+                ':country' => '',
                 ':password' => $password,
-                ':status' => 1,
-                ':deleted' => 0,
-                ':login_at' => null,
-                ':created_at' => date('Y-m-d H:i:s'),
-                ':updated_at' => null,
-                ':deleted_at' => null,
             ];
+
             $query = $this->db->prepare($sql);
             $response = $query->execute($params);
 

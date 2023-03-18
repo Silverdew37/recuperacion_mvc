@@ -64,6 +64,14 @@
                 </ul>
             </div>
         <?php endif; ?>
+        <!-- IR PANEL ADMINISTRACIÓN -->
+        <?php if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] > 0): ?>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a href="<?= ROOT.'adminShop' ?>" class="nav-link">Ir a administración</a>
+                </li>
+            </ul>
+        <?php endif; ?>
         <?php if(isset($data['admin']) && $data['admin']): ?>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">

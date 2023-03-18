@@ -348,7 +348,7 @@ class LoginController extends Controller
             if ( ! $errors ) {
                 $data = $this->model->getUserByEmail($user);
                 $session = new Session();
-                $session->login($data);
+                $session->login($data, $isAdmin);
 
                 header("location:" . ROOT . 'shop');
             } else {
