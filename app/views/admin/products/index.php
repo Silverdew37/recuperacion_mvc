@@ -3,6 +3,7 @@
     <div class="card-header">
         <h1 class="text-center">Administración de Productos</h1>
     </div>
+    <?php var_dump($data['products']); ?>
     <div class="card-body">
         <table class="table text-center" width="100%">
             <thead>

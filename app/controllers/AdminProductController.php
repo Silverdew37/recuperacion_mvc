@@ -26,6 +26,11 @@ class AdminProductController extends Controller
                 'products' => $products,
             ];
 
+            foreach ($products as $product)
+            {
+                $product -> description = Validate::excerpt($product->description, 30);
+            }
+
             $this->view('admin/products/index', $data);
 
         } else {
