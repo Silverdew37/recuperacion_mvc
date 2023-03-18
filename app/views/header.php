@@ -73,6 +73,14 @@
                     <a href="<?= ROOT ?>adminProduct" class="nav-link">Productos</a>
                 </li>
             </ul>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <button type="submit" class="btn tbn-light ms-2 me-2">
+                        <a href="<?= ROOT ?>admin/logout" class="nav-link">Logout</a>
+                    </button>
+
+                </li>
+            </ul>
         <?php endif; ?>
     </div>
 </nav>
