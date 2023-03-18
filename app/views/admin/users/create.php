@@ -4,19 +4,19 @@
             <h1 class="text-center">Alta de un usuario administrador</h1>
         </div>
         <div class="card-body">
-            <form action="<?= ROOT ?>adminUser/create/" method="POST">
+            <form action="<?= ROOT ?>adminUser/store/" method="POST">
                 <div class="form-group text-left">
                     <label for="name">Usuario:</label>
                     <input type="text" name="name" class="form-control"
                            placeholder="Escribe tu nombre completo" required
-                           value="<?= $data['dataForm']['name'] ?? '' ?>"
+                           value="<?= $data['data']['name'] ?? '' ?>"
                     >
                 </div>
                 <div class="form-group text-left">
                     <label for="email">Correo Electrónico:</label>
                     <input type="email" name="email" class="form-control"
                            placeholder="Escribe el correo electrónico" required
-                           value="<?= $data['dataForm']['email'] ?? '' ?>"
+                           value="<?= $data['data']['email'] ?? '' ?>"
                     >
                 </div>
                 <div class="form-group text-left">
