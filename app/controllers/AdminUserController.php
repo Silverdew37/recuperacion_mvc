@@ -76,7 +76,6 @@ class AdminUserController extends Controller
         }
 
         if (!$errors) {
-
             if ($this->model->createAdminUser($dataForm)) {
                 header("location:" . ROOT . 'adminuser');
             } else {
@@ -114,7 +113,7 @@ class AdminUserController extends Controller
             'admin' => true,
             'data' => $user,
             'status' => $status,
-            'errors' => $errors,
+            'errors' => $errors
         ];
 
         $this->view('admin/users/update', $data);
@@ -161,21 +160,14 @@ class AdminUserController extends Controller
                 $this->edit($id, $errors);
             }
         }
+        else{
+            $this->edit($id, $errors);
+        }
     }
 
     public function delete($id)
     {
         $errors = [];
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            $errors = $this->model->delete($id);
-
-            if ( ! $errors ) {
-                header('location:' . ROOT . 'adminuser');
-            }
-
-        }
 
         $user = $this->model->getUserById($id);
         $status = $this->model->getConfig('adminStatus');
@@ -190,5 +182,14 @@ class AdminUserController extends Controller
         ];
 
         $this->view('admin/users/delete', $data);
+    }
+
+    public function destroy($id)
+    {
+        $errors = $this->model->delete($id);
+
+        if ( ! $errors ) {
+            header('location:' . ROOT . 'adminuser');
+        }
     }
 }
