@@ -28,12 +28,13 @@ class Login
 
             $password = hash_hmac('sha512', $data['password'], ENCRIPTKEY);
 
-            $sql = 'INSERT INTO users(first_name, last_name_1, last_name_2, email, 
+            $sql = 'INSERT INTO users(is_admin, first_name, last_name_1, last_name_2, email, 
                   address, city, state, zipcode, country, password) 
-                  VALUES(:first_name, :last_name_1, :last_name_2, :email, 
+                  VALUES(:is_admin, :first_name, :last_name_1, :last_name_2, :email, 
                   :address, :city, :state, :zipcode, :country, :password)';
 
             $params = [
+                ':is_admin' => 0,
                 ':first_name' => $data['firstName'],
                 ':last_name_1' => $data['lastName1'],
                 ':last_name_2' => $data['lastName2'],

@@ -13,8 +13,8 @@ class Session
         if (isset($_SESSION['user'])) {
             $this->user = $_SESSION['user'];
             $this->login = true;
-            $_SESSION['isAdmin'] = $this->isAdmin();
             $_SESSION['cartTotal'] = $this->cartTotal();
+            $_SESSION['isAdmin'] = $this->isAdmin();
             $this->cartTotal = $_SESSION['cartTotal'];
         } else {
             unset($this->user);
@@ -74,9 +74,9 @@ class Session
     {
         $db = Mysqldb::getInstance()->getDatabase();
 
-        $sql = 'SELECT is_admin FROM users WHERE id=:user_id';
+        $sql = 'SELECT is_admin FROM users WHERE email=:mail';
         $query = $db->prepare($sql);
-        $query->execute([':user_id' => $this->getUserId()]);
+        $query->execute([':mail' => $this->user['user']]);
         $data = $query->fetch(PDO::FETCH_OBJ);
         unset($db);
 

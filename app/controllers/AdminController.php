@@ -48,7 +48,8 @@ class AdminController extends Controller
                 if ( ! $errors ) {
 
                     $session = new Session();
-                    $session->login($dataForm);
+                    $isAdmin = $session->isAdmin();
+                    $session->login($dataForm, $isAdmin);
 
                     header("LOCATION:" . ROOT . 'AdminShop');
                 }

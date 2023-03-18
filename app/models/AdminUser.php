@@ -42,16 +42,15 @@ class AdminUser
     {
         $response = false;
 
-        if ( ! $this->existsEmail($data['email'])) {
-
             $password = hash_hmac('sha512', $data['password'], ENCRIPTKEY);
 
-            $sql = 'INSERT INTO users(first_name, last_name_1, last_name_2, email, 
+            $sql = 'INSERT INTO users(is_admin, first_name, last_name_1, last_name_2, email, 
                   address, city, state, zipcode, country, password) 
-                  VALUES(:first_name, :last_name_1, :last_name_2, :email, 
+                  VALUES(:is_admin, :first_name, :last_name_1, :last_name_2, :email, 
                   :address, :city, :state, :zipcode, :country, :password)';
 
             $params = [
+                ':is_admin' => 1,
                 ':first_name' => $data['name'],
                 ':last_name_1' => '',
                 ':last_name_2' => '',
@@ -66,8 +65,6 @@ class AdminUser
 
             $query = $this->db->prepare($sql);
             $response = $query->execute($params);
-
-        }
 
         return $response;
     }
