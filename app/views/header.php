@@ -58,9 +58,18 @@
                             <button type="submit" class="btn btn-light"><i class="fas fa-search"></i></button>
                         </form>
                     </li>
+                    <?php if (isset($_SESSION['user'])):?>
                     <li class="nav-item">
                         <a href="<?= ROOT ?>shop/logout" class="nav-link">Salir</a>
                     </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a href="<?= ROOT ?>login" class="nav-link">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= ROOT ?>login/registro" class="nav-link">Register</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         <?php endif; ?>

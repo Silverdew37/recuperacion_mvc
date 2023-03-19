@@ -18,6 +18,7 @@ class Session
         } else {
             unset($this->user);
             $this->login = false;
+            $this->user = false;
         }
     }
 
@@ -50,7 +51,10 @@ class Session
 
     public function getUserId()
     {
-        return $this->user->id;
+        if ($this->user){
+            return $this->user->id;
+        }
+        return false;
     }
 
     public function cartTotal()
