@@ -46,6 +46,18 @@ class ShopController extends Controller
 
         $product = $this->model->getProductById($id);
 
+        switch ($back){
+            case 'courses':
+                $txtBtn = 'cursos';
+                break;
+            case 'books':
+                $txtBtn = 'libros';
+                break;
+            default:
+                $txtBtn = 'productos';
+                break;
+        }
+
         $data = [
             'titulo' => 'Detalle del producto',
             'menu' => true,
@@ -54,6 +66,7 @@ class ShopController extends Controller
             'errors' => [],
             'data' => $product,
             'user_id' => $session->getUserId(),
+            'txtBtn' => $txtBtn,
         ];
 
         $this->view('shop/show', $data);
