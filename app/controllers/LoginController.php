@@ -348,6 +348,7 @@ class LoginController extends Controller
             if ( ! $errors ) {
                 $data = $this->model->getUserByEmail($user);
                 $session = new Session();
+                $session->user = $user;
                 $isAdmin = $session->isAdmin();
                 $session->login($data, $isAdmin);
 

@@ -46,8 +46,8 @@ class AdminController extends Controller
                 $errors = $this->model->verifyUser($dataForm);
 
                 if ( ! $errors ) {
-
                     $session = new Session();
+                    $session->user = $user;
                     $isAdmin = $session->isAdmin();
                     $session->login($dataForm, $isAdmin);
 

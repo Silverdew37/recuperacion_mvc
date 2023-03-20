@@ -3,7 +3,7 @@
 class Session
 {
     private $login = false;
-    private $user;
+    public $user;
     private $cartTotal;
 
     public function __construct()
@@ -14,7 +14,6 @@ class Session
             $this->user = $_SESSION['user'];
             $this->login = true;
             $_SESSION['cartTotal'] = $this->cartTotal();
-            $_SESSION['isAdmin'] = $this->isAdmin();
             $this->cartTotal = $_SESSION['cartTotal'];
         } else {
             unset($this->user);
@@ -24,9 +23,12 @@ class Session
 
     public function login($user, $isAdmin)
     {
+        var_dump($user);
         if ($user) {
+            var_dump($user);
             $this->user = $user;
             $_SESSION['user'] = $user;
+            $_SESSION['isAdmin'] = $isAdmin;
 
             $this->login = true;
         }
@@ -74,12 +76,13 @@ class Session
     {
         $db = Mysqldb::getInstance()->getDatabase();
 
-        $sql = 'SELECT is_admin FROM users WHERE email=:mail';
+        $sql = 'SELECT * FROM users WHERE email=:mail';
         $query = $db->prepare($sql);
-        $query->execute([':mail' => $this->user['user']]);
+        $query->execute([':mail' => $this->user]);
         $data = $query->fetch(PDO::FETCH_OBJ);
         unset($db);
-
+        var_dump($this->user);
+        //die("fin");
         return ($data->is_admin ?? 0);
 
     }
