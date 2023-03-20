@@ -88,7 +88,8 @@ class CartController extends Controller
                 'menu' => true,
                 'data' => $user,
             ];
-            $this->view('carts/address', $data);
+            //$this->view('carts/address', $data);
+            $this->view('carts/select_address', $data);
 
         } else {
             $data = [
@@ -101,8 +102,43 @@ class CartController extends Controller
         }
     }
 
+    public function address()
+    {
+        $session = new Session();
+
+        if ($session->getLogin())
+        {
+            $user = $session->getUser();
+
+            $data = [
+                'titulo' => 'Carrito | Dirección',
+                'subtitle' => 'Checkout | Modificar dirección',
+                'menu' => true,
+                'data' => $user,
+            ];
+
+            $this->view('carts/address', $data);
+        }
+        else
+        {
+            $data = [
+                'titulo' => 'Carrito | Checkout',
+                'subtitle' => 'Checkout | Iniciar sesion',
+                'menu' => true
+            ];
+
+            $this->view('carts/checkout', $data);
+        }
+
+
+    }
+
     public function paymentmode()
     {
+        // GUARDAR DATOS POST (si viene por post, hago X. Si no hago Y)
+        // POST > validar datos y guardar en la bbdd "address"
+
+        //Esto es lo último que habrá que poner en el "si viene por POST"
         $data = [
             'titulo' => 'Carrito | Forma de pago',
             'subtitle' => 'Checkout | Forma de pago',
