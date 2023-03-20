@@ -16,12 +16,24 @@
         <?php $verify = false; $subtotal = 0; $send = 0; $discount = 0 ?>
 
         Modo de Pago: <?= $data['payment'] ?><br>
-        Nombre: <?= $data['user']->first_name ?> <?= $data['user']->last_name_1 ?> <?= $data['user']->last_name_2 ?><br>
-        Dirección: <?= $data['user']->address ?><br>
-        Ciudad:	<?= $data['user']->city ?><br>
-        Estado: <?= $data['user']->state ?><br>
-        Código Postal: <?= $data['user']->zipcode ?><br>
-        País: <?= $data['user']->country ?><br>
+
+        <?php if($data['newAddress']): ?>
+            Nombre: <?= $data['newAddress']['name'] ?> <?= $data['newAddress']['last_name_1'] ?> <?= $data['newAddress']['last_name_2'] ?><br>
+            Dirección: <?= $data['newAddress']['address'] ?><br>
+            Ciudad:	<?= $data['newAddress']['city'] ?><br>
+            Estado: <?= $data['newAddress']['state'] ?><br>
+            Código Postal: <?= $data['newAddress']['zipcode'] ?><br>
+            País: <?= $data['newAddress']['country'] ?><br>
+        <?php else: ?>
+            Nombre: <?= $data['user']->first_name ?> <?= $data['user']->last_name_1 ?> <?= $data['user']->last_name_2 ?><br>
+            Dirección: <?= $data['user']->address ?><br>
+            Ciudad:	<?= $data['user']->city ?><br>
+            Estado: <?= $data['user']->state ?><br>
+            Código Postal: <?= $data['user']->zipcode ?><br>
+            País: <?= $data['user']->country ?><br>
+        <?php endif; ?>
+
+
 
         <table class="table table-stripped" width="100%">
             <tr>

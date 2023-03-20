@@ -13,7 +13,7 @@
         <p>Por favor, compruebe los datos de envío y cambie lo que considere necesario</p>
     </div>
     <div class="card-body">
-        <form action="<?= ROOT ?>cart/paymentmode/" method="POST">
+        <form action="<?= ROOT ?>cart/validate_form/" method="POST">
             <div class="form-group text-left">
                 <label for="first_name">Nombre:</label>
                 <input type="text" name="first_name" id="first_name" class="form-control"
@@ -57,8 +57,8 @@
                        value="<?= $data['data']->state ?? '' ?>">
             </div>
             <div class="form-group text-left">
-                <label for="postcode">Código postal:</label>
-                <input type="text" name="postcode" id="postcode" class="form-control"
+                <label for="zipcode">Código postal:</label>
+                <input type="text" name="zipcode" id="zipcode" class="form-control"
                        required placeholder="Escriba su código postal"
                        value="<?= $data['data']->zipcode ?? '' ?>">
             </div>

@@ -93,4 +93,23 @@ class Cart
         ];
         return $query->execute($params);
     }
+
+    public function addAddress($user_id, $addressDetails)
+    {
+        $sql = 'INSERT INTO address(first_name, last_name_1, last_name_2, address, city, state, zipcode, country, id_user)
+                 VALUES (:first_name, :last_name_1, :last_name_2, :address, :city, :state, :zipcode, :country, :id_user)';
+        $query = $this->db->prepare($sql);
+        $params = [
+            ':first_name' => $addressDetails['name'],
+            ':last_name_1' => $addressDetails['last_name_1'],
+            ':last_name_2' => $addressDetails['last_name_2'],
+            ':address' => $addressDetails['address'],
+            ':city' => $addressDetails['city'],
+            ':state' => $addressDetails['state'],
+            ':zipcode' => $addressDetails['zipcode'],
+            ':country' => $addressDetails['country'],
+            ':id_user' => $user_id,
+        ];
+        $query->execute($params);
+    }
 }
